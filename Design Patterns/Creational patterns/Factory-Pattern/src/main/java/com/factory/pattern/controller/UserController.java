@@ -45,7 +45,7 @@ public class UserController {
         }
         try {
             UserResponseDto userResponse = userService.getUserByEmail(userEmail);
-            return new ApiResponse(userResponse, SystemMessages.User.SUCCESS_GOT);
+            return new ApiResponse(userResponse, SystemMessages.User.SUCCESS_RETRIEVED);
         } catch (Exception e) {
             return new ApiResponse(userEmail, SystemMessages.User.NOT_FOUND);
         }
@@ -58,7 +58,7 @@ public class UserController {
             if (userResponseDtoList.isEmpty()) {
                 return new ApiResponse(userResponseDtoList, SystemMessages.User.NO_USERS);
             }
-            return new ApiResponse(userResponseDtoList, SystemMessages.User.SUCCESS_GOT);
+            return new ApiResponse(userResponseDtoList, SystemMessages.User.SUCCESS_RETRIEVED);
         } catch (Exception e) {
             return new ApiResponse(e.getMessage(), SystemMessages.User.GET_FAIL);
         }

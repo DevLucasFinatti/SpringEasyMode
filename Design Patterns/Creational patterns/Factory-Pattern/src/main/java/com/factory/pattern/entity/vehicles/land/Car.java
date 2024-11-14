@@ -21,7 +21,7 @@ public class Car extends Vehicle {
     private CarCategoryEnum categoryEnum;
 
     @Enumerated(EnumType.STRING)
-    private WheelDriveTypeEnum whellDrive;
+    private WheelDriveTypeEnum wheelDrive;
 
     @Enumerated(EnumType.STRING)
     private WheelsTypeEnum wheelsType;
@@ -32,13 +32,13 @@ public class Car extends Vehicle {
             VehicleTypeEnum type,
             Integer doorsNum,
             CarCategoryEnum categoryEnum,
-            WheelDriveTypeEnum whellDrive,
+            WheelDriveTypeEnum wheelDrive,
             WheelsTypeEnum wheelsType
     ) {
         super(brand, color, type);
         this.doorsNum = doorsNum;
         this.categoryEnum = categoryEnum;
-        this.whellDrive = whellDrive;
+        this.wheelDrive = wheelDrive;
         this.wheelsType = wheelsType;
     }
 
@@ -62,12 +62,12 @@ public class Car extends Vehicle {
         this.categoryEnum = categoryEnum;
     }
 
-    public WheelDriveTypeEnum getWhellDrive() {
-        return whellDrive;
+    public WheelDriveTypeEnum getWheelDrive() {
+        return wheelDrive;
     }
 
-    public void setWhellDrive(WheelDriveTypeEnum whellDrive) {
-        this.whellDrive = whellDrive;
+    public void setWheelDrive(WheelDriveTypeEnum wheelDrive) {
+        this.wheelDrive = wheelDrive;
     }
 
     public WheelsTypeEnum getWheelsType() {

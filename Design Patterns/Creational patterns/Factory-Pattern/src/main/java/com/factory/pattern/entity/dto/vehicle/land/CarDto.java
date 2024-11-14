@@ -12,7 +12,7 @@ public class CarDto {
     private VehicleColorEnum color;
     private VehicleTypeEnum type;
     private CarCategoryEnum categoryEnum;
-    private WheelDriveTypeEnum whellDrive;
+    private WheelDriveTypeEnum wheelDrive;
     private WheelsTypeEnum wheelsType;
     private Integer doorsNum;
 
@@ -32,7 +32,7 @@ public class CarDto {
         this.color = color;
         this.type = type;
         this.categoryEnum = categoryEnum;
-        this.whellDrive = whellDrive;
+        this.wheelDrive = whellDrive;
         this.wheelsType = wheelsType;
         this.doorsNum = doorsNum;
     }
@@ -69,12 +69,12 @@ public class CarDto {
         this.categoryEnum = categoryEnum;
     }
 
-    public WheelDriveTypeEnum getWhellDrive() {
-        return whellDrive;
+    public WheelDriveTypeEnum getWheelDrive() {
+        return wheelDrive;
     }
 
-    public void setWhellDrive(WheelDriveTypeEnum whellDrive) {
-        this.whellDrive = whellDrive;
+    public void setWheelDrive(WheelDriveTypeEnum wheelDrive) {
+        this.wheelDrive = wheelDrive;
     }
 
     public WheelsTypeEnum getWheelsType() {

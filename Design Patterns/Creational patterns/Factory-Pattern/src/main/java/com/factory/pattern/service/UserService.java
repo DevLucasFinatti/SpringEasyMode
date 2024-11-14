@@ -101,7 +101,7 @@ public class UserService {
             Optional<User> optionalUser = userRepository.findById(id);
             if (optionalUser.isPresent()) {
                 userRepository.deleteById(id); // Deleta o usuário
-                return new ApiResponse(id, SystemMessages.User.DELETED);
+                return new ApiResponse(id, SystemMessages.User.SUCCESS_DELETED);
             } else {
                 return new ApiResponse(id, SystemMessages.User.NOT_FOUND);
             }

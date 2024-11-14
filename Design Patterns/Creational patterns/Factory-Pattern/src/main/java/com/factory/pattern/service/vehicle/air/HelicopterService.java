@@ -1,13 +1,13 @@
 package com.factory.pattern.service.vehicle.air;
 
 import com.factory.pattern.entity.dto.vehicle.air.HelicopterDto;
+import com.factory.pattern.entity.enums.vehicle.VehicleBrandEnum;
 import com.factory.pattern.entity.vehicles.air.Helicopter;
 import com.factory.pattern.repository.vehicle.air.HelicopterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class HelicopterService {
@@ -58,17 +58,77 @@ public class HelicopterService {
         throw new RuntimeException(String.valueOf(helicopterDtoConvert(helicopterDto)));
     }
 
-    public List<HelicopterDto> getAll(){
-        List<Helicopter> helicopters = helicopterRepository.findAll();
-        List<HelicopterDto> helicoptersDto = new ArrayList<>();
-
-        for (Helicopter helicopter : helicopters) {
-            HelicopterDto helicopterDto = helicopterConvertToDto(helicopter);
-            helicoptersDto.add(helicopterDto);
-        }
-
-        return helicoptersDto;
+    public List<Helicopter> getAll(){
+        return helicopterRepository.findAll();
     }
 
+    public Helicopter getByVehicleId(String vehicleId){
+        String formattedUuid = vehicleId.replaceFirst(
+                "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)",
+                "$1-$2-$3-$4-$5"
+        );
+        UUID id = UUID.fromString(formattedUuid);
+        return helicopterRepository.findByVehicleId(id)
+                .orElse(new Helicopter());
+    }
 
+    public List<HelicopterDto> getByBrand(VehicleBrandEnum brand){
+        List<Helicopter> helicopterList = helicopterRepository.findByBrand(brand);
+        List<HelicopterDto> helicopterDtoList = new ArrayList<>();
+
+        for (Helicopter helicopter : helicopterList) {
+            HelicopterDto helicopterDto = helicopterConvertToDto(helicopter);
+            helicopterDtoList.add(helicopterDto);
+        }
+
+        return helicopterDtoList;
+    }
+
+    public List<HelicopterDto> getByPropellerNum(Integer propellerNum){
+        List<Helicopter> helicopterList = helicopterRepository.findByPropellerNum(propellerNum);
+        List<HelicopterDto> helicopterDtoList = new ArrayList<>();
+
+        for (Helicopter helicopter : helicopterList) {
+            HelicopterDto helicopterDto = helicopterConvertToDto(helicopter);
+            helicopterDtoList.add(helicopterDto);
+        }
+
+        return helicopterDtoList;
+    }
+
+    public HelicopterDto updateHelicopter(String vehicleId, HelicopterDto helicopterDto) {
+        String formattedUuid = vehicleId.replaceFirst(
+                "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)",
+                "$1-$2-$3-$4-$5"
+        );
+        UUID id = UUID.fromString(formattedUuid);
+
+        Helicopter existingHelicopter = helicopterRepository.findByVehicleId(id)
+                .orElseThrow(() -> new RuntimeException("Helicopter not found"));
+
+        existingHelicopter.setType(helicopterDto.getType());
+        existingHelicopter.setColor(helicopterDto.getColor());
+        existingHelicopter.setBrand(helicopterDto.getBrand());
+        existingHelicopter.setWindowsNum(helicopterDto.getWindowsNum());
+        existingHelicopter.setDoorsNum(helicopterDto.getDoorsNum());
+        existingHelicopter.setPropellerNum(helicopterDto.getPropellerNum());
+
+        helicopterRepository.save(existingHelicopter);
+        return helicopterConvertToDto(existingHelicopter);
+    }
+
+    public boolean deleteById(String vehicleId) {
+        String formattedUuid = vehicleId.replaceFirst(
+                "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)",
+                "$1-$2-$3-$4-$5"
+        );
+        UUID id = UUID.fromString(formattedUuid);
+
+        Optional<Helicopter> helicopter = helicopterRepository.findByVehicleId(id);
+        if (helicopter.isPresent()) {
+            helicopterRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

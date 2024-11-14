@@ -29,6 +29,6 @@ public class AuthController {
             return new ApiResponse(accessDto.getToken(), SystemMessages.Auth.MISSING_VALUES);
         }
 
-        return new ApiResponse(accessDto, SystemMessages.Auth.SUCCESSFULLY_LOGIN);
+        return new ApiResponse(accessDto, SystemMessages.Auth.SUCCESS_LOGIN);
     }
 }

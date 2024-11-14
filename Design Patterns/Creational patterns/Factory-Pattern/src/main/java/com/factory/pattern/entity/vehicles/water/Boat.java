@@ -19,6 +19,9 @@ public class Boat extends Vehicle {
         this.hasMotor = hasMotor;
     }
 
+    public Boat() {
+    }
+
     public Integer getSailsNum() {
         return sailsNum;
     }
