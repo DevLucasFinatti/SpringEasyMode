@@ -20,6 +20,22 @@ public class BoatService {
     @Autowired
     BoatRepository boatRepository;
 
+    public Boolean validateBoatDto(BoatDto boatDto) {
+        System.out.println("Validando BoatDto: " + boatDto);
+        System.out.println("Brand: " + boatDto.getBrand());
+        System.out.println("Color: " + boatDto.getColor());
+        System.out.println("Type: " + boatDto.getType());
+        System.out.println("SailsNum: " + boatDto.getSailsNum());
+        System.out.println("HasMotor: " + boatDto.getHasMotor());
+
+        return boatDto.getBrand() != null ||
+                boatDto.getColor() != null ||
+                boatDto.getType() != null ||
+                boatDto.getSailsNum() != null ||
+                boatDto.getHasMotor() != null;
+    }
+
+
     public Boat convertToBoat(BoatDto boatDto){
         Boat boat = new Boat();
 

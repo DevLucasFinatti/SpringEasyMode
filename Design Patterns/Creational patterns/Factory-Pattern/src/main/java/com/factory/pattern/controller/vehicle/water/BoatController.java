@@ -20,6 +20,9 @@ public class BoatController {
     @PostMapping("/create")
     public ApiResponse createBoat(@RequestBody BoatDto boatDto) {
         try {
+            if(boatService.validateBoatDto(boatDto)){
+                return new ApiResponse(boatDto, SystemMessages.Boat.MISSING_VALUES);
+            }
             boatService.createBoat(boatDto);
             return new ApiResponse(boatDto, SystemMessages.Boat.SUCCESS_CREATED);
         } catch (Exception e) {
