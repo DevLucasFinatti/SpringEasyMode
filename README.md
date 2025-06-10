@@ -2,11 +2,6 @@
 
 Bem-vindo ao **Spring-Easy-Mode**, um repositório dedicado ao aprendizado e à prática do framework Spring Boot. Este repositório contém uma coleção de projetos que exemplificam conceitos fundamentais e avançados do Spring Boot, com o objetivo de ajudar desenvolvedores a entender melhor as capacidades e melhores práticas dessa poderosa ferramenta.
 
-## Estrutura do Repositório
-
-O repositório é organizado da seguinte maneira:
-
-- **projeto1pasta**: Este projeto demonstra como implementar [Descrição do Projeto 1, ex: Spring Security].
 
 ## Objetivo
 
